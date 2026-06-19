@@ -1,12 +1,6 @@
-import {
-  ArrowRight,
-  BarChart3,
-  Link2,
-  LockKeyhole,
-  QrCode,
-  Zap,
-} from "lucide-react";
+import { BarChart3, Link2, LockKeyhole, QrCode, Zap } from "lucide-react";
 import Link from "next/link";
+import { ShortenerForm } from "./shortener-form";
 
 const features = [
   {
@@ -60,24 +54,7 @@ export default function Home() {
             from one simple dashboard.
           </p>
 
-          <form className="mt-8 flex max-w-2xl flex-col gap-3 rounded-xl border border-white/10 bg-white/10 p-3 shadow-2xl shadow-indigo-950/40 sm:flex-row">
-            <label className="sr-only" htmlFor="url">
-              Long URL
-            </label>
-            <input
-              id="url"
-              type="url"
-              placeholder="Paste your long URL"
-              className="min-h-12 flex-1 rounded-lg border border-white/10 bg-slate-950 px-4 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-indigo-300"
-            />
-            <button
-              type="button"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-indigo-500 px-5 font-semibold text-white transition hover:bg-indigo-400"
-            >
-              Shorten
-              <ArrowRight className="ml-2 size-5" aria-hidden="true" />
-            </button>
-          </form>
+          <ShortenerForm />
         </div>
 
         <aside className="rounded-2xl border border-white/10 bg-white/10 p-6 shadow-2xl shadow-indigo-950/40">
