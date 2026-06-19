@@ -1,36 +1,142 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ShortIn
+
+ShortIn is a modern URL-shortener landing page built with Next.js App Router.
+It includes a polished marketing interface, a client-side demo short-link
+generator, formatting and linting checks, type checking, and a hardened GitHub
+Actions CI workflow.
+
+## Features
+
+- Responsive URL-shortener homepage
+- Client-side URL validation and short-link demo generation
+- Configurable public short-link domain
+- Tailwind CSS styling
+- Lucide icons
+- ESLint, Prettier, TypeScript, and production build validation
+- Least-privilege CI workflow with pinned GitHub Actions
+
+## Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Lucide React
+- ESLint
+- Prettier
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm ci
+```
+
+Create a local environment file:
+
+```bash
+NEXT_PUBLIC_SHORT_DOMAIN=https://short.in
+```
+
+The app reads `NEXT_PUBLIC_SHORT_DOMAIN` to build generated short URLs. Do not
+include a trailing slash.
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+```
 
-## Learn More
+Runs the app locally with Next.js development mode.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Creates a production build.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run start
+```
 
-## Deploy on Vercel
+Starts the production server after a successful build.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run lint
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Runs ESLint across the project.
+
+```bash
+npm run type-check
+```
+
+Runs TypeScript without emitting files.
+
+```bash
+npm run format
+```
+
+Formats supported source files with Prettier.
+
+```bash
+npm run format:check
+```
+
+Checks whether supported source files match Prettier formatting.
+
+```bash
+npm run validate
+```
+
+Runs formatting check, linting, type checking, and production build in sequence.
+
+## Project Structure
+
+```text
+src/app/
+  globals.css          Global styles and Tailwind imports
+  layout.tsx           Root App Router layout and metadata
+  page.tsx             Homepage UI
+  shortener-form.tsx   Client-side URL input and short-link generation
+
+.github/workflows/
+  ci.yml               CI validation workflow
+```
+
+## Environment Variables
+
+| Variable                   | Required | Description                                               |
+| -------------------------- | -------- | --------------------------------------------------------- |
+| `NEXT_PUBLIC_SHORT_DOMAIN` | Yes      | Public base domain used when generating demo short links. |
+
+Example:
+
+```bash
+NEXT_PUBLIC_SHORT_DOMAIN=https://short.in
+```
+
+## CI
+
+The CI workflow runs on pull requests to `dev` and `main`, and pushes to `dev`.
+It installs dependencies with `npm ci`, checks formatting, runs linting, runs
+TypeScript, and builds the app.
+
+The workflow uses least-privilege repository permissions and pinned GitHub
+Actions for reproducibility.
+
+## Notes
+
+The current shortener is a client-side demo. It generates deterministic short
+links for display, but it does not persist links or provide redirect handling.
+A production shortener would need a backend route, database, and collision-safe
+ID allocation strategy.
