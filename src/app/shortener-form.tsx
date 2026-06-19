@@ -13,13 +13,17 @@ function normalizeUrl(value: string) {
 }
 
 function createShortLink(url: string) {
-  let hash = 0;
+  const shortDomain =
+    process.env.NEXT_PUBLIC_SHORT_DOMAIN?.replace(/\/+$/, "") ??
+    "https://short.in";
+  let hash = BigInt("14695981039346656037");
 
   for (let index = 0; index < url.length; index += 1) {
-    hash = (hash * 31 + url.charCodeAt(index)) >>> 0;
+    hash ^= BigInt(url.charCodeAt(index));
+    hash = BigInt.asUintN(64, hash * BigInt("1099511628211"));
   }
 
-  return `https://short.in/${hash.toString(36).padStart(6, "0").slice(0, 6)}`;
+  return `${shortDomain}/${hash.toString(36).padStart(10, "0").slice(-10)}`;
 }
 
 export function ShortenerForm() {
