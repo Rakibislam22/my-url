@@ -11,17 +11,20 @@ import Link from "next/link";
 const features = [
   {
     title: "Fast redirects",
-    description: "Route visitors through short, memorable links with a clean destination experience.",
+    description:
+      "Route visitors through short, memorable links with a clean destination experience.",
     icon: Zap,
   },
   {
     title: "Useful analytics",
-    description: "See clicks, sources, devices, and campaign performance without digging through noise.",
+    description:
+      "See clicks, sources, devices, and campaign performance without digging through noise.",
     icon: BarChart3,
   },
   {
     title: "Secure sharing",
-    description: "Keep branded links tidy with aliases, QR codes, and safer link management.",
+    description:
+      "Keep branded links tidy with aliases, QR codes, and safer link management.",
     icon: LockKeyhole,
   },
 ];
@@ -121,7 +124,10 @@ export default function Home() {
               key={title}
               className="rounded-xl border border-white/10 bg-white/[0.06] p-6"
             >
-              <Icon className="mb-5 size-8 text-indigo-300" aria-hidden="true" />
+              <Icon
+                className="mb-5 size-8 text-indigo-300"
+                aria-hidden="true"
+              />
               <h2 className="text-xl font-semibold">{title}</h2>
               <p className="mt-3 leading-7 text-slate-400">{description}</p>
             </article>
