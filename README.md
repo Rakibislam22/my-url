@@ -33,7 +33,8 @@ Install dependencies:
 npm ci
 ```
 
-Create a local environment file:
+Create a `.env.local` file in the project root and add the public short-link
+domain:
 
 ```bash
 NEXT_PUBLIC_SHORT_DOMAIN=https://short.in
